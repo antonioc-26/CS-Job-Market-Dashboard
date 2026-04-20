@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Data (avoid large raw files)
+data/raw_jobs.csv
+
+# Node / Vue
+node_modules/
+dist/
+
+# OS
+.DS_Store
+
+# Env
+.env
