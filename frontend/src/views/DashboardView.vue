@@ -19,7 +19,7 @@ Notes:
 -->
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, nextTick } from 'vue'
 import Papa, { type ParseResult } from 'papaparse'
 
 import SummaryCards from '../components/SummaryCards.vue'
@@ -63,6 +63,7 @@ type SalarySkillRow = {
 const summary = ref<Summary | null>(null)
 const jobsByState = ref<{ state: string; count: number }[]>([])
 const cleanedJobs = ref<CleanedJobRow[]>([])
+const isReady = ref(false)
 
 // Default to the unfiltered dashboard view until the user selects a state.
 const selectedState = ref('ALL')
@@ -193,6 +194,14 @@ onMounted(async () => {
 
     // Load the full cleaned job-level dataset used for interactive filtering.
     cleanedJobs.value = await loadCsv<CleanedJobRow>('/data/cleaned_jobs.csv')
+
+    // Wait for Vue to finish DOM updates, then force a resize so Chart.js
+    // measures the final container width before rendering.
+    await nextTick()
+    window.dispatchEvent(new Event('resize'))
+
+    // Only allow chart rendering after layout has stabilized.
+    isReady.value = true
   } catch (error) {
     // Keep the failure path visible during development and debugging.
     console.error('Failed to load dashboard data:', error)
@@ -236,8 +245,8 @@ onMounted(async () => {
       </div>
     </section>
 
-    <section class="charts-grid">
-      <!-- Each chart renders only when its backing dataset has been loaded. -->
+    <section v-if="isReady" class="charts-grid">
+      <!-- Each chart renders only after the dashboard data has loaded and layout is stable. -->
       <TopSkillsChart
         v-if="filteredTopSkills.length"
         :rows="filteredTopSkills"
