@@ -18,7 +18,7 @@ Notes:
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import Papa from 'papaparse'
+import Papa, { type ParseResult } from 'papaparse'
 
 import SummaryCards from '../components/SummaryCards.vue'
 import TopSkillsChart from '../components/charts/TopSkillsChart.vue'
@@ -67,7 +67,7 @@ async function loadCsv<T>(path: string): Promise<T[]> {
     Papa.parse<T>(csvText, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => resolve(results.data),
+      complete: (results: ParseResult<T>) => resolve(results.data),
       error: (error: Error) => reject(error),
     })
   })

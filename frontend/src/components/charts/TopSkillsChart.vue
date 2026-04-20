@@ -70,7 +70,6 @@ const chartOptions = computed(() => ({
       color: '#111827',
       font: {
         size: 16,
-        weight: 'bold',
       },
     },
   },
