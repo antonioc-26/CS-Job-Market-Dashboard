@@ -3,8 +3,8 @@
 ![GitHub release](https://img.shields.io/github/v/release/antonioc-26/CS-Job-Market-Dashboard)
 ![GitHub License](https://img.shields.io/github/license/antonioc-26/CS-Job-Market-Dashboard)
 ![Vue](https://img.shields.io/badge/frontend-Vue%203-42b883)
-![Python](https://img.shields.io/badge/backend-Python-3776AB)
-![Vercel](https://img.shields.io/badge/deployed%20on-Vercel-FFE873)
+![Python](https://img.shields.io/badge/backend-Python-FFE873)
+![Vercel](https://img.shields.io/badge/deployed%20on-Vercel-0070F3)
 
 A full-stack data analytics project that examines entry-level computer science job postings to uncover **in-demand skills, salary trends, and geographic hiring patterns**.
 
