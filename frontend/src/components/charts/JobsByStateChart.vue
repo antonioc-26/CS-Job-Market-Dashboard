@@ -38,13 +38,19 @@ const props = defineProps<{
 }>()
 
 // Map incoming state data into the structure expected by vue-chartjs.
+const chartColors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#6366f1']
+
 const chartData = computed(() => ({
   labels: props.rows.map((row) => row.state),
   datasets: [
     {
       label: 'Jobs',
       data: props.rows.map((row) => row.count),
+      backgroundColor: props.rows.map((_, i) => chartColors[i % chartColors.length]),
       borderWidth: 1,
+      borderRadius: 6,
+      barPercentage: 0.7,
+      categoryPercentage: 0.7,
     },
   ],
 }))
@@ -55,11 +61,40 @@ const chartOptions = computed(() => ({
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      display: true,
+      display: false,
     },
     title: {
       display: true,
       text: 'Job Counts by State',
+      color: '#111827',
+      font: {
+        size: 16,
+        weight: 'bold',
+      },
+    },
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: '#374151',
+      },
+      grid: {
+        color: '#e5e7eb',
+      },
+      border: {
+        color: '#6b7280',
+      },
+    },
+    y: {
+      ticks: {
+        color: '#374151',
+      },
+      grid: {
+        color: '#d1d5db',
+      },
+      border: {
+        color: '#6b7280',
+      },
     },
   },
 }))
