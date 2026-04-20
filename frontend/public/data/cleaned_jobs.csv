@@ -1,0 +1,96 @@
+job_title,company,location,state,avg_salary,skills,experience_required
+Project Manager,DataInc,"New York, NY",NY,185079.0,"TypeScript, Java, JavaScript, Kubernetes, Go",2.0
+Engineering Manager,AI Solutions,"Boston, MA",MA,173298.5,"AWS, Go, Machine Learning, Git, Ruby",2.0
+Engineering Manager,EnterpriseHub,"Denver, CO",CO,166564.0,"React, REST APIs, Java, Docker, TypeScript, Machine Learning",2.0
+Data Scientist,CodeFactory,"New York, NY",NY,154854.5,"REST APIs, CI/CD, Python",2.0
+Frontend Developer,DataInc,"New York, NY",NY,150031.0,"TypeScript, JavaScript, SQL, Machine Learning, Docker",2.0
+Senior Android Engineer,Bolt Technology,"Berlin, Berlin, Germany",,150000.0,,0.0
+Staff Data Platform Engineer (f/m/d),Apaleo,"Munich, Bavaria, Germany",,150000.0,,0.0
+Senior Solutions Architect,Automat-it,Berlin,,150000.0,,2.0
+Backend Developer,InnovateLab,"San Francisco, CA",CA,149266.0,"Kubernetes, Docker, Java, TensorFlow, Python, SQL, Git",2.0
+Project Manager,CodeFactory,"Austin, TX",TX,148799.0,"TypeScript, Git, JavaScript, React, Kubernetes, AWS, Node.js",2.0
+Project Manager,DigitalWorks,"Denver, CO",CO,147662.0,"JavaScript, Go, Ruby, Git, TensorFlow, REST APIs",2.0
+Software Engineer,EnterpriseHub,"San Francisco, CA",CA,147433.0,"Node.js, TensorFlow, CI/CD, REST APIs",2.0
+Project Manager,CloudSystems,Remote,,147169.5,"Machine Learning, AWS, Kubernetes, Docker, SQL, Ruby",2.0
+Machine Learning Engineer,DataInc,"New York, NY",NY,146425.0,"Agile, REST APIs, AWS, Git, Machine Learning, CI/CD",2.0
+Machine Learning Engineer,TechCorp,"San Francisco, CA",CA,144333.0,"TypeScript, Kubernetes, Go, Git, SQL, Node.js, TensorFlow",2.0
+Software Engineer,DataInc,"San Francisco, CA",CA,144190.5,"Ruby, REST APIs, AWS, CI/CD, TypeScript, Agile, JavaScript",2.0
+Frontend Developer,InnovateLab,"Seattle, WA",WA,140575.0,"Git, MongoDB, Go, Agile, React, Ruby, Machine Learning",2.0
+Machine Learning Engineer,AI Solutions,"New York, NY",NY,140106.5,"SQL, AWS, REST APIs, Kubernetes, Machine Learning",2.0
+Marketing/Sales Manager (m/w/d),HHL Leipzig Graduate School of Management,Leipzig,,140000.0,,0.0
+SEO Account Manager:in (m/w/d),Corominas Consulting GmbH,Fürth,,140000.0,,0.0
+Talent Acquisition Manager:in,Skalar,Munich,,140000.0,,2.0
+Strategic Procurement Manager (m/w/d),1KOMMA5˚,Hamburg,,140000.0,,0.0
+Marketplace & E-Commerce Manager (m/w/d),fleeky GmbH,Hamburg,,140000.0,,0.0
+Social Media & Community Manager:in (m/w/d),Bearpaw GmbH,Bamberg,,140000.0,,0.0
+Regional Restaurant Marketing Manager (North and East),Wolt - English,"Hamburg, Hamburg, Germany",,140000.0,,0.0
+Security Engineer,StartupXYZ,"New York, NY",NY,137165.5,"Git, Ruby, Machine Learning, Kubernetes, Agile, SQL",2.0
+Senior Finanzbuchhalter:in (m/w/d),advacc  advanced accounting GmbH,Berlin,,120000.0,,0.0
+"Analytics Lead, Operations",SumUp,"Berlin, Berlin, Germany",,120000.0,,0.0
+QA Engineer,WebDynamics,"Chicago, IL",IL,119660.5,"JavaScript, Python, Docker, REST APIs",2.0
+Data Scientist,StartupXYZ,"Austin, TX",TX,119367.5,"Java, REST APIs, Git, AWS, Node.js, Machine Learning",2.0
+Full Stack Developer,TechCorp,"Toronto, Canada",,119061.5,"AWS, Node.js, TensorFlow, Ruby",2.0
+Data Scientist,DataInc,Remote,,118895.0,"Docker, Python, REST APIs, Node.js, Java",2.0
+Frontend Developer,DataInc,"Atlanta, GA",GA,118635.5,"Git, TypeScript, Docker, Go",2.0
+Security Engineer,InnovateLab,"Berlin, Germany",,115870.0,"Agile, Go, Docker, CI/CD",2.0
+QA Engineer,CloudSystems,"Toronto, Canada",,115244.5,"TensorFlow, Python, REST APIs",2.0
+UX Designer,DataInc,"New York, NY",NY,114272.0,"Kubernetes, AWS, Agile, Python",2.0
+Junior Developer,DigitalWorks,"London, UK",UK,112954.5,"Go, Python, CI/CD",2.0
+Frontend Developer,AI Solutions,"Boston, MA",MA,112246.0,"Node.js, TypeScript, Machine Learning, Python, Go, Agile, Ruby",2.0
+System Administrator,DataInc,"London, UK",UK,112011.0,"MongoDB, Machine Learning, SQL, Ruby, JavaScript, Go, Kubernetes",2.0
+Backend Developer,InnovateLab,"Austin, TX",TX,111957.5,"Ruby, JavaScript, Agile, SQL, CI/CD",2.0
+Junior Developer,CodeFactory,"Seattle, WA",WA,111853.5,"SQL, Machine Learning, TypeScript, JavaScript, CI/CD, Docker",0.0
+System Administrator,WebDynamics,"London, UK",UK,110599.5,"Agile, Node.js, React, REST APIs",2.0
+Junior Developer,WebDynamics,"San Francisco, CA",CA,110041.5,"JavaScript, Kubernetes, REST APIs, Python, AWS, TensorFlow",0.0
+C#/.NET Developer (m/f/d),Rahantech GmbH,Frankfurt,,110000.0,,0.0
+Full Stack Engineer (m/w/d),Justhome GmbH,Berlin,,110000.0,,0.0
+Forward Deployed Engineer (m/f/d),Elucidate GmbH,Berlin,,110000.0,,0.0
+Solutions Architect,DigitalWorks,"Austin, TX",TX,109863.5,"MongoDB, TypeScript, Machine Learning, Ruby, Python, Agile, TensorFlow",2.0
+Solutions Architect,TechCorp,"Atlanta, GA",GA,109633.0,"CI/CD, Machine Learning, Docker, TypeScript",2.0
+Machine Learning Engineer,CloudSystems,"Boston, MA",MA,107860.0,"CI/CD, Go, Node.js, Ruby, REST APIs",2.0
+Frontend Developer,CloudSystems,"Boston, MA",MA,107643.0,"Java, React, Agile, Docker, Python, Machine Learning",2.0
+Machine Learning Engineer,CloudSystems,"Boston, MA",MA,107027.0,"React, Node.js, Docker, Python, Ruby",2.0
+System Administrator,WebDynamics,"Seattle, WA",WA,104935.5,"SQL, Kubernetes, Git, Go, Ruby, Agile",2.0
+Software Engineer,AI Solutions,"Boston, MA",MA,104230.5,"Agile, Kubernetes, Machine Learning",2.0
+Security Engineer,TechCorp,"Austin, TX",TX,102956.0,"Docker, Agile, Ruby, SQL, Machine Learning, TensorFlow",2.0
+Junior Developer,DataInc,"Chicago, IL",IL,98731.5,"Agile, Java, AWS, Git, Machine Learning, Ruby, Docker",1.0
+Junior Developer,DigitalWorks,"Toronto, Canada",,95897.5,"Git, MongoDB, REST APIs, Agile, Go, CI/CD, Python",0.0
+Junior Developer,AI Solutions,"Denver, CO",CO,95327.5,"Ruby, CI/CD, AWS, Node.js, Git, SQL",1.0
+Junior Developer,DataInc,"Austin, TX",TX,88438.5,"MongoDB, Python, TypeScript, React, Node.js",2.0
+Junior Developer,AI Solutions,"Boston, MA",MA,87993.0,"MongoDB, Go, CI/CD, React, Java, Kubernetes, Git",1.0
+System Administrator,TechCorp,"Austin, TX",TX,83525.5,"AWS, React, Agile, TypeScript",2.0
+Business Analyst,CloudSystems,"Austin, TX",TX,81997.0,"AWS, JavaScript, MongoDB, TensorFlow, Machine Learning, Ruby, Agile",2.0
+Business Analyst,EnterpriseHub,"Denver, CO",CO,80076.5,"MongoDB, Machine Learning, JavaScript, AWS, Node.js, Python",2.0
+Werkstudent:in Performance Marketing / PPC (Meta Ads & Google Ads),Corominas Consulting GmbH,Fürth,,80000.0,,0.0
+** SAP Consultant - Schwerpunkt Security-Beratung **,OREXES GmbH,Fulda,,80000.0,,0.0
+Praktikum Social Media Content,onest.,Konstanz,,80000.0,,0.0
+On-Site Support Specialist (m/w/d) - 1389,ITconfig/all GmbH,Hanover,,80000.0,,0.0
+Werkstudent Standortanalyse & PPS-Optimierung Außenwerbung (m/w/d) (Hybrid · datenbasiert · regelmäßige Feedbackmeetings im Büro),SCHWARZ-Außenwerbung GmbH,Konstanz,,80000.0,,0.0
+Sachbearbeiter (m/w/d) Abrechnung/Faktura Schadenmanagement als Elternzeitvertretung (befristet),Fahrzeug-Werke LUEG AG,Essen,,80000.0,,0.0
+"Content Producer, mit Fokus auf Video (m/w/d)",SmartMakers GmbH,Karlsruhe,,80000.0,,0.0
+Fachkraft für Lebensmitteltechnik (Mitarbeiter im Prozessbereich) (m/w/d),Flora Food Group,"Kleve, North Rhine-Westphalia, Germany",,80000.0,,0.0
+Projektingenieur Wasserver- und Entsorgung (m/w/d) mit Führungsverantwortung in München,Wilhelm Unternehmensberatung,Munich,,80000.0,,0.0
+"Let's connect, Open Application",Pulse Advertising GmbH,Gössenheim,,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Kassel, Hesse, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Bielefeld, North Rhine-Westphalia, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Nuremberg, Bavaria, Germany",,80000.0,,0.0
+Werkstudent Webentwicklung (m/w/d),Die Gruppe Werbeagentur GmbH,Leinfelden-Echterdingen,,80000.0,,0.0
+Post-Onboarding Success Specialist,Wolt - English,"Hannoversche Straße, Lower Saxony, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Augsburg, Bavaria, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Munich, Bavaria, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Münster, North Rhine-Westphalia, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Stuttgart, Baden-Württemberg, Germany",,80000.0,,0.0
+Fleet Operations Driver,Bolt Technology,"Augsburg, Bavaria, Germany",,80000.0,,0.0
+Strategic HR Business Partner (f/m/d),IONOS SE,Berlin,,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Karlsruhe, Baden-Württemberg, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Frankfurt, Hesse, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Mannheim, Baden-Württemberg, Germany",,80000.0,,0.0
+Scooter Mechanic,Bolt Technology,"Berlin, Berlin, Germany",,80000.0,,0.0
+Fleet Operations Driver,Bolt Technology,"Wolfsburg, Lower Saxony, Germany",,80000.0,,0.0
+Fleet Operations Driver,Bolt Technology,"Bremen, Bremen, Germany",,80000.0,,0.0
+UX Designer,WebDynamics,Remote,,78595.5,"Java, Docker, Machine Learning",2.0
+UX Designer,StartupXYZ,"Denver, CO",CO,76923.0,"Git, Python, AWS, React",2.0
+Business Analyst,DigitalWorks,"Toronto, Canada",,71428.0,"Python, CI/CD, Machine Learning, SQL",2.0
+(Junior) Testautomatisierer (m/w/d) #LowCode,Greenfield Technology AG,Düsseldorf,,57500.0,,0.0
+(Junior) Media Buyer Influencer Marketing (m/w/d),benuta GmbH,Cologne,,57500.0,,0.0
+(Junior) Softwareentwickler (m/w/d) #LowCode,Greenfield Technology AG,Düsseldorf,,57500.0,,0.0

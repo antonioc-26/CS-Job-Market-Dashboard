@@ -1,8 +1,30 @@
 # CS Job Market Dashboard
 
+![GitHub release](https://img.shields.io/github/v/release/antonioc-26/CS-Job-Market-Dashboard)
+![GitHub License](https://img.shields.io/github/license/antonioc-26/CS-Job-Market-Dashboard)
+![Vue](https://img.shields.io/badge/frontend-Vue%203-42b883)
+![Python](https://img.shields.io/badge/backend-Python-FFE873)
+![Vercel](https://img.shields.io/badge/deployed%20on-Vercel-0070F3)
+
 A full-stack data analytics project that examines entry-level computer science job postings to uncover **in-demand skills, salary trends, and geographic hiring patterns**.
 
 This project combines a **Python data pipeline** with a **Vue.js dashboard** to transform raw job data into clear, interactive insights.
+
+---
+
+## 🌐 Live Demo
+
+👉 https://cs-job-market-dashboard-ayhc.vercel.app/
+
+Deployed using **Vercel**, this live dashboard showcases real-time analysis results including in-demand skills, salary trends, and geographic job distribution.
+
+---
+
+## 🎬 Demo
+
+![Dashboard Demo](frontend/src/assets/screenshots/demo.gif)
+
+🎥 Full Demo Video: https://drive.google.com/file/d/1cPrVdEQ-O4DNqQZMvSDfc6ZjU_OAS9tK/view?usp=sharing
 
 ---
 
@@ -18,15 +40,16 @@ This project combines a **Python data pipeline** with a **Vue.js dashboard** to 
 
 ---
 
-## 🎬 Demo
+## ⭐ Highlights
 
-![Dashboard Demo](frontend/src/assets/screenshots/demo.gif)
-
-🎥 Full Demo Video: https://drive.google.com/file/d/1cPrVdEQ-O4DNqQZMvSDfc6ZjU_OAS9tK/view?usp=sharing
+- End-to-end data pipeline (cleaning → analysis → visualization)
+- Real-world dataset with practical insights
+- Full-stack implementation (Python + Vue)
+- Structured Git workflow with feature branches
 
 ---
 
-## 🚀 Live Project Overview
+## 🚀 Overview
 
 **What this project does:**
 
@@ -62,13 +85,22 @@ This project combines a **Python data pipeline** with a **Vue.js dashboard** to 
 * Chart.js + vue-chartjs
 * PapaParse (CSV parsing)
 
-### Tooling
+### Tooling & Deployment
 
-* Git / GitHub (feature-branch workflow)
-* npm / Node.js
-* Virtual environments (Python)
+- Git / GitHub (feature-branch workflow)
+- npm / Node.js
+- Virtual environments (Python)
+- Vercel (frontend deployment)
 
 ---
+
+## 🚀 Deployment
+
+The frontend dashboard is deployed using **Vercel**, enabling fast global delivery and seamless integration with GitHub for continuous deployment.
+
+Any updates pushed to the repository automatically trigger a new deployment.
+
+--- 
 
 ## 📁 Project Structure
 
@@ -249,7 +281,6 @@ feature/vue-dashboard-visualizations
 ## 🔮 Future Improvements
 
 * Add filtering (by state, skill, job type)
-* Deploy dashboard (Netlify / Vercel)
 * Integrate live API instead of static CSV
 * Add regression model for salary prediction
 * Enhance UI/UX with advanced charts
@@ -271,15 +302,6 @@ Computer Science, Millersville University
 * Portfolio: https://antonioc-26.github.io/
 * GitHub: https://github.com/antonioc-26
 * LinkedIn: https://linkedin.com/in/antonioc26
-
----
-
-## ⭐ Highlights
-
-- End-to-end data pipeline (cleaning → analysis → visualization)
-- Real-world dataset with practical insights
-- Full-stack implementation (Python + Vue)
-- Structured Git workflow with feature branches
 
 ---
 
