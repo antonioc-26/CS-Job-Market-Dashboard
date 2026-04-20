@@ -15,3 +15,7 @@ dist/
 
 # Env
 .env
+
+frontend/node_modules/
+frontend/dist/
+output/*.png
