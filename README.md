@@ -6,6 +6,26 @@ This project combines a **Python data pipeline** with a **Vue.js dashboard** to 
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard Overview
+
+![Dashboard](frontend/src/assets/screenshots/dashboard.jpg)
+
+### Data Visualizations
+
+![Charts](frontend/src/assets/screenshots/charts.jpg)
+
+---
+
+## 🎬 Demo
+
+![Dashboard Demo](frontend/src/assets/screenshots/demo.gif)
+
+🎥 Full Demo Video: https://drive.google.com/file/d/1cPrVdEQ-O4DNqQZMvSDfc6ZjU_OAS9tK/view?usp=sharing
+
+---
+
 ## 🚀 Live Project Overview
 
 **What this project does:**
@@ -263,8 +283,8 @@ Computer Science, Millersville University
 
 ---
 
-## 📌 Notes
+## 📌 Context
 
-This project was developed as part of a data analysis course and extended into a portfolio-ready full-stack application.
+This project analyzes real-world job market data to provide actionable insights for entry-level software engineering roles.
 
 ---
