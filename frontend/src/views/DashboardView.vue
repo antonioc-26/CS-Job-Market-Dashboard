@@ -8,7 +8,7 @@ Responsibilities:
 - Load summary and chart data from generated analysis outputs
 - Load cleaned job-level data for interactive filtering
 - Transform CSV values into typed chart-friendly structures
-- Compute filtered top-skill results based on the selected state
+- Compute filtered top-skill and salary-by-skill results based on the selected state
 - Display summary metrics and data visualizations
 - Scope layout and presentation styles to this view
 
@@ -34,11 +34,6 @@ type Summary = {
   top_skill_count: number
 }
 
-type SalaryRow = {
-  skills: string
-  avg_salary: string
-}
-
 type StateRow = {
   state: string
   count: string
@@ -59,9 +54,13 @@ type SkillCountRow = {
   count: number
 }
 
+type SalarySkillRow = {
+  skills: string
+  avg_salary: number
+}
+
 // Reactive view state for summary metrics and chart datasets.
 const summary = ref<Summary | null>(null)
-const salaryBySkill = ref<{ skills: string; avg_salary: number }[]>([])
 const jobsByState = ref<{ state: string; count: number }[]>([])
 const cleanedJobs = ref<CleanedJobRow[]>([])
 
@@ -131,12 +130,52 @@ const filteredTopSkills = computed<SkillCountRow[]>(() => {
     .slice(0, 10)
 })
 
-// Update the chart title to reflect whether the data is filtered globally
+// Recompute average salary by skill from the filtered job-level dataset so the
+// salary chart stays aligned with the selected state.
+const filteredSalaryBySkill = computed<SalarySkillRow[]>(() => {
+  const salaryBuckets = new Map<string, number[]>()
+
+  for (const job of filteredJobs.value) {
+    const avgSalary = Number(job.avg_salary)
+
+    // Skip records with missing or invalid salary values so averages remain meaningful.
+    if (!Number.isFinite(avgSalary)) {
+      continue
+    }
+
+    const skills = String(job.skills || '')
+      .split(',')
+      .map((skill) => skill.trim())
+      .filter(Boolean)
+
+    for (const skill of skills) {
+      const existing = salaryBuckets.get(skill) ?? []
+      existing.push(avgSalary)
+      salaryBuckets.set(skill, existing)
+    }
+  }
+
+  return Array.from(salaryBuckets.entries())
+    .map(([skills, salaries]) => ({
+      skills,
+      avg_salary: salaries.reduce((sum, salary) => sum + salary, 0) / salaries.length,
+    }))
+    .sort((a, b) => b.avg_salary - a.avg_salary)
+    .slice(0, 10)
+})
+
+// Update the chart titles to reflect whether the data is filtered globally
 // or scoped to a specific state.
 const topSkillsTitle = computed(() =>
   selectedState.value === 'ALL'
     ? 'Top In-Demand Skills'
     : `Top In-Demand Skills (${selectedState.value})`,
+)
+
+const salaryBySkillTitle = computed(() =>
+  selectedState.value === 'ALL'
+    ? 'Average Salary by Skill'
+    : `Average Salary by Skill (${selectedState.value})`,
 )
 
 onMounted(async () => {
@@ -145,13 +184,6 @@ onMounted(async () => {
     // the JSON payload is available.
     const summaryResponse = await fetch('/data/summary.json')
     summary.value = await summaryResponse.json()
-
-    // Convert CSV numeric fields explicitly before passing them into charts.
-    const salaryRows = await loadCsv<SalaryRow>('/data/salary_by_skill.csv')
-    salaryBySkill.value = salaryRows.map((row) => ({
-      skills: row.skills,
-      avg_salary: Number(row.avg_salary),
-    }))
 
     const stateRows = await loadCsv<StateRow>('/data/jobs_by_state.csv')
     jobsByState.value = stateRows.map((row) => ({
@@ -190,8 +222,8 @@ onMounted(async () => {
 
     <section class="filters-card">
       <div class="filter-header">
-        <h2>Filter Top Skills</h2>
-        <p>Select a state to update the Top Skills chart.</p>
+        <h2>Filter Dashboard</h2>
+        <p>Select a state to update skill demand and salary insights.</p>
       </div>
 
       <div class="filter-control">
@@ -211,7 +243,11 @@ onMounted(async () => {
         :rows="filteredTopSkills"
         :title="topSkillsTitle"
       />
-      <SalaryBySkillChart v-if="salaryBySkill.length" :rows="salaryBySkill" />
+      <SalaryBySkillChart
+        v-if="filteredSalaryBySkill.length"
+        :rows="filteredSalaryBySkill"
+        :title="salaryBySkillTitle"
+      />
       <JobsByStateChart v-if="jobsByState.length" :rows="jobsByState" />
     </section>
   </main>
