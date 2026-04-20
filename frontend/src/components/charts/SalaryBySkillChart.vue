@@ -24,6 +24,7 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+  type TooltipItem,
 } from 'chart.js'
 
 // Register only the necessary Chart.js components required by this chart.
@@ -86,9 +87,10 @@ const chartOptions = computed(() => ({
     },
     tooltip: {
       callbacks: {
-        // Format hovered values as currency for easier interpretation.
-        label: (context: { parsed: { y: number } }) =>
-          `Average Salary: $${context.parsed.y.toLocaleString()}`,
+        label: (context: TooltipItem<'bar'>) => {
+          const value = context.parsed.y ?? 0
+          return `Average Salary: $${value.toLocaleString()}`
+        },
       },
     },
   },
