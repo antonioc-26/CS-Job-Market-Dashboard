@@ -33,13 +33,22 @@ type SkillRow = {
   count: number
 }
 
-const props = defineProps<{
-  rows: SkillRow[]
-}>()
+const props = withDefaults(
+  defineProps<{
+    rows: SkillRow[]
+    title?: string
+  }>(),
+  {
+    // Provide a default title so the component can be reused without requiring it.
+    title: 'Top In-Demand Skills',
+  },
+)
 
-// Map the incoming rows into the dataset format expected by vue-chartjs.
+// Fixed color palette reused across bars; cycles if there are more skills than colors.
 const chartColors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#6366f1']
 
+// Transform incoming rows into Chart.js dataset format.
+// Color assignment cycles to avoid index overflow.
 const chartData = computed(() => ({
   labels: props.rows.map((row) => row.skill),
   datasets: [
@@ -48,25 +57,27 @@ const chartData = computed(() => ({
       data: props.rows.map((row) => row.count),
       backgroundColor: props.rows.map((_, i) => chartColors[i % chartColors.length]),
       borderWidth: 1,
+      // Rounded bars improve visual polish without affecting data meaning.
       borderRadius: 6,
+      // Control bar density for better spacing and readability.
       barPercentage: 0.7,
       categoryPercentage: 0.7,
     },
   ],
 }))
 
-// Keep chart configuration reactive so the component can respond cleanly
-// if future option logic depends on incoming props or state.
+// Reactive chart configuration allows future dynamic behavior (e.g., theming, toggles).
 const chartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
+      // Legend is hidden since only one dataset is shown.
       display: false,
     },
     title: {
       display: true,
-      text: 'Top In-Demand Skills',
+      text: props.title,
       color: '#111827',
       font: {
         size: 16,
@@ -78,6 +89,7 @@ const chartOptions = computed(() => ({
       ticks: {
         color: '#374151',
       },
+      // Subtle grid lines for readability without visual clutter.
       grid: {
         color: '#e5e7eb',
       },
