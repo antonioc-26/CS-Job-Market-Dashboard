@@ -65,7 +65,7 @@ const chartOptions = computed(() => ({
     },
     title: {
       display: true,
-      text: 'Job Counts by State',
+      text: 'Job Counts by States',
       color: '#111827',
       font: {
         size: 16,
