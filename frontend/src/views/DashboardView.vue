@@ -1,12 +1,14 @@
 <!--
 File: DashboardView.vue
 Purpose: Define the main dashboard view for the CS Job Market project by loading
-analysis outputs and rendering summary metrics and charts.
+analysis outputs and rendering summary metrics, charts, and interactive filtering controls.
 
 Responsibilities:
 - Render the dashboard hero content and project description
 - Load summary and chart data from generated analysis outputs
+- Load cleaned job-level data for interactive filtering
 - Transform CSV values into typed chart-friendly structures
+- Compute filtered top-skill results based on the selected state
 - Display summary metrics and data visualizations
 - Scope layout and presentation styles to this view
 
@@ -17,7 +19,7 @@ Notes:
 -->
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import Papa, { type ParseResult } from 'papaparse'
 
 import SummaryCards from '../components/SummaryCards.vue'
@@ -32,11 +34,6 @@ type Summary = {
   top_skill_count: number
 }
 
-type TopSkillRow = {
-  skill: string
-  count: string
-}
-
 type SalaryRow = {
   skills: string
   avg_salary: string
@@ -47,11 +44,29 @@ type StateRow = {
   count: string
 }
 
+type CleanedJobRow = {
+  job_title: string
+  company: string
+  location: string
+  state: string
+  avg_salary: string
+  skills: string
+  experience_required: string
+}
+
+type SkillCountRow = {
+  skill: string
+  count: number
+}
+
 // Reactive view state for summary metrics and chart datasets.
 const summary = ref<Summary | null>(null)
-const topSkills = ref<{ skill: string; count: number }[]>([])
 const salaryBySkill = ref<{ skills: string; avg_salary: number }[]>([])
 const jobsByState = ref<{ state: string; count: number }[]>([])
+const cleanedJobs = ref<CleanedJobRow[]>([])
+
+// Default to the unfiltered dashboard view until the user selects a state.
+const selectedState = ref('ALL')
 
 /**
  * Fetch and parse a CSV file into a typed array of row objects.
@@ -73,6 +88,57 @@ async function loadCsv<T>(path: string): Promise<T[]> {
   })
 }
 
+// Build the state dropdown options from the cleaned dataset so the filter
+// always reflects the actual available records.
+const stateOptions = computed(() => {
+  const states = cleanedJobs.value
+    .map((row) => row.state?.trim())
+    .filter((state): state is string => Boolean(state))
+    // Guard against stringified missing values that may appear in CSV exports.
+    .filter((state) => state !== 'nan')
+
+  return ['ALL', ...new Set(states.sort())]
+})
+
+// Restrict the job set only when a concrete state has been selected.
+const filteredJobs = computed(() => {
+  if (selectedState.value === 'ALL') {
+    return cleanedJobs.value
+  }
+
+  return cleanedJobs.value.filter((row) => row.state === selectedState.value)
+})
+
+// Recompute top skills from the filtered job-level dataset so the chart updates
+// immediately when the state filter changes.
+const filteredTopSkills = computed<SkillCountRow[]>(() => {
+  const skillCounts = new Map<string, number>()
+
+  for (const job of filteredJobs.value) {
+    const skills = String(job.skills || '')
+      .split(',')
+      .map((skill) => skill.trim())
+      .filter(Boolean)
+
+    for (const skill of skills) {
+      skillCounts.set(skill, (skillCounts.get(skill) ?? 0) + 1)
+    }
+  }
+
+  return Array.from(skillCounts.entries())
+    .map(([skill, count]) => ({ skill, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10)
+})
+
+// Update the chart title to reflect whether the data is filtered globally
+// or scoped to a specific state.
+const topSkillsTitle = computed(() =>
+  selectedState.value === 'ALL'
+    ? 'Top In-Demand Skills'
+    : `Top In-Demand Skills (${selectedState.value})`,
+)
+
 onMounted(async () => {
   try {
     // Load the summary first so the top-level metrics can render as soon as
@@ -80,13 +146,7 @@ onMounted(async () => {
     const summaryResponse = await fetch('/data/summary.json')
     summary.value = await summaryResponse.json()
 
-    // Convert CSV string values into numbers before passing them to chart components.
-    const topSkillsRows = await loadCsv<TopSkillRow>('/data/top_skills.csv')
-    topSkills.value = topSkillsRows.map((row) => ({
-      skill: row.skill,
-      count: Number(row.count),
-    }))
-
+    // Convert CSV numeric fields explicitly before passing them into charts.
     const salaryRows = await loadCsv<SalaryRow>('/data/salary_by_skill.csv')
     salaryBySkill.value = salaryRows.map((row) => ({
       skills: row.skills,
@@ -98,6 +158,9 @@ onMounted(async () => {
       state: row.state,
       count: Number(row.count),
     }))
+
+    // Load the full cleaned job-level dataset used for interactive filtering.
+    cleanedJobs.value = await loadCsv<CleanedJobRow>('/data/cleaned_jobs.csv')
   } catch (error) {
     // Keep the failure path visible during development and debugging.
     console.error('Failed to load dashboard data:', error)
@@ -125,9 +188,29 @@ onMounted(async () => {
       :top-skill-count="summary.top_skill_count"
     />
 
+    <section class="filters-card">
+      <div class="filter-header">
+        <h2>Filter Top Skills</h2>
+        <p>Select a state to update the Top Skills chart.</p>
+      </div>
+
+      <div class="filter-control">
+        <label for="state-filter">State</label>
+        <select id="state-filter" v-model="selectedState">
+          <option v-for="state in stateOptions" :key="state" :value="state">
+            {{ state === 'ALL' ? 'All States' : state }}
+          </option>
+        </select>
+      </div>
+    </section>
+
     <section class="charts-grid">
       <!-- Each chart renders only when its backing dataset has been loaded. -->
-      <TopSkillsChart v-if="topSkills.length" :rows="topSkills" />
+      <TopSkillsChart
+        v-if="filteredTopSkills.length"
+        :rows="filteredTopSkills"
+        :title="topSkillsTitle"
+      />
       <SalaryBySkillChart v-if="salaryBySkill.length" :rows="salaryBySkill" />
       <JobsByStateChart v-if="jobsByState.length" :rows="jobsByState" />
     </section>
@@ -165,11 +248,66 @@ h1 {
   max-width: 760px;
 }
 
+.filters-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.filter-header h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.filter-header p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.filter-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 220px;
+}
+
+.filter-control label {
+  font-weight: 600;
+  color: #111827;
+}
+
+.filter-control select {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #fff;
+  color: #111827;
+  font: inherit;
+}
+
 .charts-grid {
   /* Stack charts vertically with consistent spacing for the current layout. */
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .filters-card {
+    /* Collapse the filter layout vertically on smaller screens. */
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-control {
+    min-width: 100%;
+  }
 }
 </style>
